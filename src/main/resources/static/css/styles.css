@@ -1,0 +1,47 @@
+body {
+	background-image: url('../img/1.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+    overflow: hidden;
+    /*font-family: 'Pontano Sans', sans-serif;*/
+    font-family: 'Montserrat', sans-serif; 
+}
+/* LOGIN FORM BOX */
+.login-form {
+    margin: auto;
+    width: 80%;
+    margin-top: 10em;
+    background-color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    border-radius: 10px;
+    border: 1px solid white;   
+}
+/* "SIGN IN" COLOR */
+.mb-3 {
+    color: #555555;
+}
+/* "SIGN IN" placement */
+.mb-4 {
+    margin-top: 1.5em;
+}
+label {
+    margin-left: 4.7em;
+    color: #555555;
+    font-weight: bold;
+}
+.form-control {
+    /*margin-left: 2em;*/
+}
+/*SIGN UP NOW a*/
+.bo1 {
+    text-decoration-line: underline;
+}
+.bo1:hover {
+    color: indianred;
+}
+/* CENTER DIVS */
+.col-centered {
+    margin: 0 auto;
+    float: none;
+}
