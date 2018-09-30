@@ -7,6 +7,8 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +44,7 @@ public class mainController implements ErrorController {
     }
     //REDIRECT FROM '/' TO LOGIN
     @RequestMapping("/")
-    public String index() {
+    public String returnLogin() {
         return "redirect:/login";
     }
     //LOG-IN PAGE
@@ -54,10 +56,6 @@ public class mainController implements ErrorController {
     /*          USER SECTION        */
     /********************************/
 
-    @RequestMapping(value = "/afty")
-    public String afty() {
-        return "afty";
-    }
     //SIGNUP USER
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public String signUp(@ModelAttribute("signupform")SignupForm signupForm, Model model) {
@@ -70,6 +68,7 @@ public class mainController implements ErrorController {
     @RequestMapping(value = "/saveuser", method = RequestMethod.POST)
     public String saveUser(@Valid @ModelAttribute("signupform") SignupForm signupForm, BindingResult bindingResult,
                            RedirectAttributes redirAttrs) {
+        System.out.println(signupForm.toString());
         if(!bindingResult.hasErrors()) {
             Iterable<User> users = ur.findAll();
             boolean exists = false;
@@ -84,7 +83,7 @@ public class mainController implements ErrorController {
                 String psw = signupForm.getPassword();
                 BCryptPasswordEncoder bc = new BCryptPasswordEncoder();
                 String hashPsw = bc.encode(psw);
-                ur.save(new User(signupForm.getUsername(), hashPsw, signupForm.getRole()));
+                ur.save(new User(signupForm.getUsername(), signupForm.getFirstname(), hashPsw, signupForm.getRole(), signupForm.getEmail()));
             } else {
                 bindingResult.rejectValue("username", "err.username", "Username is already taken");
                 return "signup";
@@ -96,4 +95,34 @@ public class mainController implements ErrorController {
         redirAttrs.addFlashAttribute("alert", "Successfully registered!");
         return "redirect:/login";
     }
+
+    /********************************/
+    /*          INDEX SECTION        */
+    /********************************/
+
+    @RequestMapping(value = "/index")
+    public String index() {
+        return "index";
+    }
+
+    /********************************/
+    /*          PROFILE SECTION        */
+    /********************************/
+
+    //PROFILE PAGE
+    @RequestMapping(value = "/profile")
+    public String myProfile(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String cUser = authentication.getName();
+        model.addAttribute("currentUser", ur.findByUsername(cUser));
+        return "profile";
+    }
+    //MESSAGES PAGE
+    @RequestMapping(value = "/messages")
+    public String messages() {
+        return "messages";
+    }
+
+
+
 }

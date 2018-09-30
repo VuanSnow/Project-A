@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/styles.css" th:href="@{/css/styles.css}">
     <link href="https://fonts.googleapis.com/css?family=Pontano+Sans" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="./img/favicon.ico">
 </head>
 
 <body>
@@ -17,12 +18,18 @@
             <div class="text-center mb-4">
                 <img src="./img/hlogo4.png">
                 <h1 class="h3 mb-3 font-weight-bold">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+				<p>What would you like to do?</p>
+				<a class="btn btn-large btn-info" style="color: white;" th:href="@{/messages}">Encrypt messages</a>
+				<a class="btn btn-large btn-info" style="color: white;" th:href="@{/profile}">Modify my profile</a>
 
-                    <input type="submit" class="btn btn-danger" style="margin-left: 20px;margin-right: 10px;"value="Logout">
 
             </div>
-            <br />
+      
+			<div class="text-center mb-4">
+			  <input type="submit" class="btn btn-danger" style="margin-left: 20px;margin-right: 10px;"value="Logout">
+		</div>
         </form>
+	
     </div>
 </body>
 

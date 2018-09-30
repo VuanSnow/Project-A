@@ -17,10 +17,22 @@ public class SignupForm {
     String username = "";
 
     @NotEmpty
+    @Size(min = 3, max = 12)
+    String firstname = "";
+
+    @NotEmpty
     @Size(min = 8, max = 20)
     String password = "";
 
     //DEFAULT ROLE FOR ALL NEW USERS = "USER"
     @NotEmpty
     String role = "USER";
+
+    @NotEmpty
+    String email = "";
+
+    @Override
+    public String toString() {
+        return username + " : " + firstname + " : " + email + " : " + password + " : " + role;
+    }
 }

@@ -17,9 +17,9 @@ public class ProjectAApplication {
 	@Bean
 	public CommandLineRunner demo(UserRepository ur) {
 		return (args) -> {
-			User user = new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
+			User user = new User("user", "user","$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER","user@user.com");
 			ur.save(user);
-			user = new User("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
+			user = new User("admin", "admin","$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN","admin@admin.com");
 			ur.save(user);
 
 			ur.findAll().forEach(e -> System.out.println(e));

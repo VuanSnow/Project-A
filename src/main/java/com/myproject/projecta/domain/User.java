@@ -18,24 +18,32 @@ public class User {
     //USERNAME
     @Column(name = "username", nullable = false, unique = true)
     private String username;
+    //FIRST NAME
+    @Column(name = "firstname", nullable = false)
+    private String firstname;
     //PASSWORD
     @Column(name = "password", nullable = false)
     private String password;
     //ROLE
     @Column(name = "role", nullable = false)
     private String role;
+    //EMAIL
+    @Column(name = "email", nullable = false)
+    private String email;
 
     public User() {
         super();
     }
-    public User(String username, String password, String role) {
+    public User(String username, String firstname, String password, String role, String email) {
         this.username = username;
+        this.firstname = firstname;
         this.password = password;
         this.role = role;
+        this.email = email;
     }
 
     @Override
     public String toString() {
-        return username + " : " + password + " : " + role;
+        return username + " : " + firstname + " : " + email + " : " + password + " : " + role;
     }
 }

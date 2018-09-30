@@ -6,6 +6,7 @@ body {
     overflow: hidden;
     /*font-family: 'Pontano Sans', sans-serif;*/
     font-family: 'Montserrat', sans-serif; 
+    background-color: rgb(192,163,157);
 }
 /* LOGIN FORM BOX */
 .login-form {
@@ -44,4 +45,28 @@ label {
 .col-centered {
     margin: 0 auto;
     float: none;
+}
+/* container for profile page */
+.v-container {
+    min-width: 90vw;
+    margin-top: 2em;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(255,255, 255, 0.7);
+}
+/* profile pic */
+#profile-pic {
+    border: 1px solid white;
+    background-color: rgba(220, 255, 255, 0.5);
+    padding: 20px;
+    width: 200px;
+    border-radius: 30%;
+}
+/*TOP DIV.ROW */
+.top-row-element {
+   margin-top: 1.5em; 
+}
+/*SECOND DIV.ROW */
+.second-row-element {
+    margin-top: 2em;
 }
