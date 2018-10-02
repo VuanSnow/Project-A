@@ -110,6 +110,7 @@ public class mainController implements ErrorController {
     /********************************/
 
     //PROFILE PAGE
+    //RETURNS LOGGED IN USER'S FIRSTNAME AND EMAIL
     @RequestMapping(value = "/profile")
     public String myProfile(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

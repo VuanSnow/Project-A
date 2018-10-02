@@ -62,11 +62,26 @@ label {
     width: 200px;
     border-radius: 30%;
 }
-/*TOP DIV.ROW */
+/* TOP DIV.ROW */
 .top-row-element {
    margin-top: 1.5em; 
 }
-/*SECOND DIV.ROW */
+/* SECOND DIV.ROW */
 .second-row-element {
     margin-top: 2em;
+}
+/* MESSAGE TEXTAREA */
+.txtbox {
+    resize: none;
+}
+/* LABELS IN MESSAGE */
+.message-label {
+    margin-left: 0em;
+}
+/* CHECKBOX FOR OPTIONS */
+.checkbox-option {
+   margin-left: 0em; 
+}
+.form-check {
+    margin-right: 0.5em;
 }
