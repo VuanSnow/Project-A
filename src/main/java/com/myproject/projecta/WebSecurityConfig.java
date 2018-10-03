@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/css/**", "/img/**","/signup", "/saveuser", "/h2-console/**").permitAll()// ENABLE CSS,IMG,REGISTER,ERROR FOR ALL
+                .authorizeRequests().antMatchers("/css/**", "/img/**","/signup", "/saveuser", "/h2-console/**","/api/**").permitAll()// ENABLE CSS,IMG,REGISTER,ERROR FOR ALL
                 .and().csrf().ignoringAntMatchers("/h2-console/**")
                 .and().headers().frameOptions().sameOrigin()
                 .and().authorizeRequests().antMatchers("/**").authenticated()

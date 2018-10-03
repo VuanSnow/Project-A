@@ -23,7 +23,7 @@ import java.util.List;
 
 @Controller
 @FieldDefaults(level = AccessLevel.PROTECTED)
-public class mainController implements ErrorController {
+public class mainController{
 
     UserRepository ur;
 
@@ -31,7 +31,7 @@ public class mainController implements ErrorController {
     public mainController(UserRepository ur) {
         this.ur = ur;
     }
-
+/*
     //METHOD FOR CUSTOM ERROR PAGE
     final String PATH = "/error";
     @RequestMapping(value = PATH)
@@ -42,10 +42,11 @@ public class mainController implements ErrorController {
     public String getErrorPath() {
         return PATH;
     }
+    */
     //REDIRECT FROM '/' TO LOGIN
     @RequestMapping("/")
     public String returnLogin() {
-        return "redirect:/login";
+        return "redirect:/index";
     }
     //LOG-IN PAGE
     @RequestMapping(value = "/login")
