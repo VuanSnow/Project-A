@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @FieldDefaults(level = AccessLevel.PROTECTED)
-public class mainController{
+public class mainController implements ErrorController {
 
     UserRepository ur;
 
@@ -31,7 +30,7 @@ public class mainController{
     public mainController(UserRepository ur) {
         this.ur = ur;
     }
-/*
+
     //METHOD FOR CUSTOM ERROR PAGE
     final String PATH = "/error";
     @RequestMapping(value = PATH)
@@ -42,11 +41,11 @@ public class mainController{
     public String getErrorPath() {
         return PATH;
     }
-    */
+
     //REDIRECT FROM '/' TO LOGIN
     @RequestMapping("/")
     public String returnLogin() {
-        return "redirect:/index";
+        return "redirect:index";
     }
     //LOG-IN PAGE
     @RequestMapping(value = "/login")
@@ -94,7 +93,7 @@ public class mainController{
         }
         //SENDS ALERT TO REDIRECTED PAGE AFTER REGISTERING ACCOUNT
         redirAttrs.addFlashAttribute("alert", "Successfully registered!");
-        return "redirect:/login";
+        return "redirect:login";
     }
 
     /********************************/

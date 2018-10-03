@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,25 +15,27 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, updatable = false)
-    private long id;
+    long id;
     //USERNAME
     @Column(name = "username", nullable = false, unique = true)
-    private String username;
+    String username;
     //FIRST NAME
     @Column(name = "firstname", nullable = false)
-    private String firstname;
+    String firstname;
     //PASSWORD
     @Column(name = "password", nullable = false)
-    private String password;
+    String password;
     //ROLE
     @Column(name = "role", nullable = false)
-    private String role;
+    String role;
     //EMAIL
     @Column(name = "email", nullable = false)
-    private String email;
+    String email;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    List<Message> messages;
 
     public User() {
-        super();
+
     }
     public User(String username, String firstname, String password, String role, String email) {
         this.username = username;

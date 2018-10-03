@@ -1,13 +1,14 @@
 body {
-	background-image: url('../img/1.jpg');
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 100vh;
+    background-image: url('../img/1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
     overflow: hidden;
     /*font-family: 'Pontano Sans', sans-serif;*/
-    font-family: 'Montserrat', sans-serif; 
-    background-color: rgb(192,163,157);
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(192, 163, 157);
 }
+
 /* LOGIN FORM BOX */
 .login-form {
     margin: auto;
@@ -16,44 +17,53 @@ body {
     background-color: rgba(255, 255, 255, 0.7);
     position: relative;
     border-radius: 10px;
-    border: 1px solid white;   
+    border: 1px solid white;
 }
+
 /* "SIGN IN" COLOR */
 .mb-3 {
     color: #555555;
 }
+
 /* "SIGN IN" placement */
 .mb-4 {
     margin-top: 1.5em;
 }
+
 label {
     margin-left: 4.7em;
     color: #555555;
     font-weight: bold;
 }
+
 .form-control {
     /*margin-left: 2em;*/
 }
+
 /*SIGN UP NOW a*/
 .bo1 {
     text-decoration-line: underline;
 }
+
 .bo1:hover {
     color: indianred;
 }
+
 /* CENTER DIVS */
 .col-centered {
     margin: 0 auto;
     float: none;
 }
+
 /* container for profile page */
 .v-container {
     min-width: 90vw;
     margin-top: 2em;
     border: 1px solid white;
     border-radius: 10px;
-    background-color: rgba(255,255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7);
 }
+
 /* profile pic */
 #profile-pic {
     border: 1px solid white;
@@ -62,26 +72,95 @@ label {
     width: 200px;
     border-radius: 30%;
 }
+
 /* TOP DIV.ROW */
 .top-row-element {
-   margin-top: 1.5em; 
+    margin-top: 1.5em;
 }
+
 /* SECOND DIV.ROW */
 .second-row-element {
     margin-top: 2em;
 }
+
 /* MESSAGE TEXTAREA */
 .txtbox {
     resize: none;
 }
+
 /* LABELS IN MESSAGE */
 .message-label {
     margin-left: 0em;
 }
+
 /* CHECKBOX FOR OPTIONS */
 .checkbox-option {
-   margin-left: 0em; 
+    margin-left: 0em;
 }
+
 .form-check {
     margin-right: 0.5em;
+}
+
+/* SHIFT STYLE */
+.quantity {
+    display: inline-block;
+    padding-left: 2em;
+}
+
+.quantity .input-text.qty {
+    width: 35px;
+    height: 39px;
+    padding: 0 5px;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #efefef;
+}
+
+.quantity.buttons_added {
+    text-align: left;
+    position: relative;
+    white-space: nowrap;
+    vertical-align: top;
+}
+
+.quantity.buttons_added input {
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+    box-shadow: none;
+}
+
+.quantity.buttons_added .minus,
+.quantity.buttons_added .plus {
+    padding: 7px 10px 8px;
+    height: 41px;
+    background-color: #ffffff;
+    border: 1px solid #efefef;
+    cursor: pointer;
+}
+
+.quantity.buttons_added .minus {
+    border-right: 0;
+}
+
+.quantity.buttons_added .plus {
+    border-left: 0;
+}
+
+.quantity.buttons_added .minus:hover,
+.quantity.buttons_added .plus:hover {
+    background: #eeeeee;
+}
+
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+}
+
+.quantity.buttons_added .minus:focus,
+.quantity.buttons_added .plus:focus {
+    outline: none;
 }

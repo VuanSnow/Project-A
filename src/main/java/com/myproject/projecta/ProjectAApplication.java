@@ -1,5 +1,7 @@
 package com.myproject.projecta;
 
+import com.myproject.projecta.domain.Message;
+import com.myproject.projecta.domain.MessageRepository;
 import com.myproject.projecta.domain.User;
 import com.myproject.projecta.domain.UserRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -15,7 +17,7 @@ public class ProjectAApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(UserRepository ur) {
+	public CommandLineRunner demo(UserRepository ur, MessageRepository mr) {
 		return (args) -> {
 			User user = new User("user", "user","$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER","user@user.com");
 			ur.save(user);
@@ -23,6 +25,13 @@ public class ProjectAApplication {
 			ur.save(user);
 
 			ur.findAll().forEach(e -> System.out.println(e));
+
+			Message message = new Message("MSG", "ENCODETYPE", "SMGGMO=)(SD",
+					true, ur.findByUsername("admin"));
+			mr.save(message);
+
+
+
 		};
 	}
 }
