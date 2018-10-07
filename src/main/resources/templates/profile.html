@@ -22,7 +22,12 @@
                
             </div>
             <div class="col col-lg">
-               
+
+                <form class="form-group" th:action="@{/logout}" method="POST">
+                        <a class="btn btn-large btn-info" style="color: white;" th:href="@{/messages}">Encrypt messages</a>
+                        <input type="submit" class="btn btn-danger" style="margin-left: 20px;margin-right: 10px;"value="Logout">
+
+                </form>
             </div>
         </div>
         <div class="row second-row-element" th:object="${currentUser}">
@@ -32,7 +37,7 @@
                 <h5 th:text="*{email}">EMAIL</h5>
             </div>
             <div class="col col-lg">
-                <h2>Messages</h2>
+                <h2>My Messages</h2>
             </div>
             <div class="col col-lg">
 
@@ -40,13 +45,26 @@
         </div>
         <div class="row">
             <div class="col col-lg">
-                
-            </div>
-            <div class="col col-lg">
-                
-            </div>
-            <div class="col col-lg">
-                
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Message</th>
+                        <th scope="col">Encrypted message</th>
+                        <th scope="col">Encoding</th>
+                        <th scope="col">Message is public</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="table-element" th:each="element : ${list}">
+                        <td th:text="${element.message}"></td>
+                        <td th:text="${element.encryptedMsg}"></td>
+                        <td th:text="${element.encode}"></td>
+                        <td th:text="${element.visibility}"></td>
+                    </tr>
+
+                    </tbody>
+
+                </table>
             </div>
         </div>
         <div class="row">

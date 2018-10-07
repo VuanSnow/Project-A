@@ -11,10 +11,10 @@ import javax.persistence.*;
 @Data
 @FieldDefaults(level = AccessLevel.PROTECTED)
 public class Message {
+    //message ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="mid", nullable = false, updatable = false)
-    //message ID
     long mid;
     //message
     @Column(name = "message", nullable = false)
@@ -26,7 +26,7 @@ public class Message {
     @Column(name = "encryptedMsg", nullable = false)
     String encryptedMsg;
     //visibility for other users
-    @Column(name = "visibility", nullable = false)
+    @Column(name = "visibility", nullable = true)
     Boolean visibility;
     @ManyToOne
     @JsonIgnore

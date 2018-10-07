@@ -17,6 +17,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 @Controller
 @FieldDefaults(level = AccessLevel.PROTECTED)
@@ -116,13 +120,23 @@ public class mainController implements ErrorController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String cUser = authentication.getName();
         model.addAttribute("currentUser", ur.findByUsername(cUser));
+        model.addAttribute("list", ur.findByUsername(cUser).getMessages());
         return "profile";
     }
     //MESSAGES PAGE
     @RequestMapping(value = "/messages")
     public String messages(Message message, Model model) {
+        model.addAttribute("pubList", publicList());
         model.addAttribute("msgObj", message);
         return "messages";
+    }
+    private List<Message> publicList() {
+        Iterable<Message> it = mr.findAll();
+        List<Message> publicList = new ArrayList<>();
+        it.forEach(p -> {
+            if(p.getVisibility() == true) publicList.add(p);
+        });
+        return publicList;
     }
 
 
@@ -131,9 +145,10 @@ public class mainController implements ErrorController {
     /********************************/
 
     @RequestMapping(value = "/saveMsg", method = RequestMethod.POST)
-    public String saveMsg(Message message) {
+    public String saveMsg(@ModelAttribute("form") Message message) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentUser = authentication.getName();
+        System.out.println(currentUser);
         message.setUser(ur.findByUsername(currentUser));
         mr.save(message);
         return "redirect:profile";

@@ -15,7 +15,7 @@
 <body>
     <div class="container v-container text-center">
         <div class="mb-4">
-            <form th:object="${msgObj}" class="form-group" style="margin: 0 auto;" id="msg-form" th:action="@{saveMsg}" method="POST">
+            <form th:object="${msgObj}" class="form-group" style="margin: 0 auto;" id="msg-form" name="form" th:action="@{saveMsg}" method="POST">
 
                 <img src="./img/hlogo3.png">
                 <br />
@@ -42,13 +42,13 @@
                 <h2>Options</h2>
                 <div class="form-inline justify-content-center">
                     <div class="form-check">
-                        <label class="form-check-label checkbox-option" for="visibility" style="padding-right: 1em;">Make message private</label>
-                        <input type="checkbox" class="form-check-input" id="visibility" >
+                        <label class="form-check-label checkbox-option" for="visibility" style="padding-right: 1em;">Make message public</label>
+                        <input type="checkbox" class="form-check-input" id="visibility" th:field="*{visibility}">
 
                     </div>
                     <div class="form-group">
                         <label for="encode" style="padding-right: 1em;margin-left: 0.7em;">Select encode:</label>
-                        <select class="form-control" id="encode" required>
+                        <select class="form-control" id="encode" required th:field="*{encode}">
                             <option value="" selected></option>
                             <option value="Caesar Cipher">Caesar Cipher</option>
                             <option value="" hidden>3</option>
@@ -69,7 +69,7 @@
 
                 </div>
                 <div class="col col-lg">
-                    <h2>Messages</h2>
+                    <h2>All Messages</h2>
                 </div>
                 <div class="col col-lg">
 
@@ -77,13 +77,25 @@
             </div>
             <div class="row">
                 <div class="col col-lg">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Message</th>
+                            <th scope="col">Encrypted message</th>
+                            <th scope="col">Encoding</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="table-element" th:each="element : ${pubList}">
+                            <td th:text="${element.user.firstname}"></td>
+                            <td th:text="${element.message}"></td>
+                            <td th:text="${element.encryptedMsg}"></td>
+                            <td th:text="${element.encode}"></td>
+                        </tr>
 
-                </div>
-                <div class="col col-lg">
-
-                </div>
-                <div class="col col-lg">
-
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div class="row">
