@@ -1,8 +1,6 @@
 package com.myproject.projecta.web;
 
-import com.myproject.projecta.domain.SignupForm;
-import com.myproject.projecta.domain.User;
-import com.myproject.projecta.domain.UserRepository;
+import com.myproject.projecta.domain.*;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +23,12 @@ import javax.validation.Valid;
 public class mainController implements ErrorController {
 
     UserRepository ur;
+    MessageRepository mr;
 
     @Autowired
-    public mainController(UserRepository ur) {
+    public mainController(UserRepository ur, MessageRepository mr) {
         this.ur = ur;
+        this.mr = mr;
     }
 
     //METHOD FOR CUSTOM ERROR PAGE
@@ -106,7 +106,7 @@ public class mainController implements ErrorController {
     }
 
     /********************************/
-    /*          PROFILE SECTION        */
+    /*          PROFILE SECTION      */
     /********************************/
 
     //PROFILE PAGE
@@ -120,8 +120,25 @@ public class mainController implements ErrorController {
     }
     //MESSAGES PAGE
     @RequestMapping(value = "/messages")
-    public String messages() {
+    public String messages(Message message, Model model) {
+        model.addAttribute("msgObj", message);
         return "messages";
+    }
+
+
+    /********************************/
+    /*          PROFILE SECTION      */
+    /********************************/
+
+    @RequestMapping(value = "/saveMsg", method = RequestMethod.POST)
+    public String saveMsg(Message message) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUser = authentication.getName();
+        message.setUser(ur.findByUsername(currentUser));
+        mr.save(message);
+        return "redirect:profile";
+
+
     }
 
 

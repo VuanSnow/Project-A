@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false, updatable = false)
+    @Column(name="mid", nullable = false, updatable = false)
     //message ID
     long mid;
     //message

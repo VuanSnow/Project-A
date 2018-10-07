@@ -15,7 +15,7 @@
 <body>
     <div class="container v-container text-center">
         <div class="mb-4">
-            <form class="form-group" style="margin: 0 auto;" id="msg-form" th:action="@{/logout}" method="POST" onsubmit="return false;">
+            <form th:object="${msgObj}" class="form-group" style="margin: 0 auto;" id="msg-form" th:action="@{saveMsg}" method="POST">
 
                 <img src="./img/hlogo3.png">
                 <br />
@@ -25,7 +25,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="old-message" class="message-label">Message to encrypt</label>
-                            <textarea class="form-control txtbox" rows="3" id="old-message"></textarea>
+                            <textarea class="form-control txtbox" rows="3" id="old-message" th:field="*{message}"></textarea>
                             <br />
                             <input class="btn btn-success float-right" id="submit-button" type="button" value="Encrypt!">
                         </div>
@@ -33,7 +33,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="new-message" class="message-label">Encrypted message</label>
-                            <textarea class="form-control txtbox" rows="3" id="new-message" readonly></textarea>
+                            <textarea class="form-control txtbox" rows="3" id="new-message" readonly th:field="*{encryptedMsg}"></textarea>
                             <br />
                             <input id="encrypt-button" class="btn btn-success" type="submit" value="Save!">
                         </div>
@@ -42,17 +42,17 @@
                 <h2>Options</h2>
                 <div class="form-inline justify-content-center">
                     <div class="form-check">
-                        <label class="form-check-label checkbox-option" for="visiblity" style="padding-right: 1em;">Make message private</label>
-                        <input type="checkbox" class="form-check-input" id="visibility">
+                        <label class="form-check-label checkbox-option" for="visibility" style="padding-right: 1em;">Make message private</label>
+                        <input type="checkbox" class="form-check-input" id="visibility" >
 
                     </div>
                     <div class="form-group">
-                        <label for="sel1" style="padding-right: 1em;margin-left: 0.7em;">Select encode:</label>
+                        <label for="encode" style="padding-right: 1em;margin-left: 0.7em;">Select encode:</label>
                         <select class="form-control" id="encode" required>
-                            <option selected></option>
-                            <option>CIPHER</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option value="" selected></option>
+                            <option value="Caesar Cipher">Caesar Cipher</option>
+                            <option value="" hidden>3</option>
+                            <option value="" hidden>4</option>
                         </select>
                     </div>
 
@@ -126,8 +126,11 @@
             var x = $("#old-message").val();
             var selectedOption = $("#encode").val();
             var shiftvalue =  $(".shift-value").val();
-            toCipher(x, shiftvalue);
-            //console.log($("#visibility").is(":checked")); PRIVATE BOX VALUE 
+            var encodeIndex = $("option:selected").index("option");
+            if(encodeIndex == 1) {
+                toCipher(x, shiftvalue);
+            }
+            //console.log($("#visibility").is(":checked")); PRIVATE BOX VALUE
         });
 
         function toCipher(x, y) { //y = string, x = shift
