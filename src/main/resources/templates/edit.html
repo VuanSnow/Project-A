@@ -15,9 +15,9 @@
 <body>
     <div class="container v-container text-center">
         <div class="mb-4">
-            <form th:object="${msgObj}" class="form-group" style="margin: 0 auto;" id="msg-form" name="form" th:action="@{saveMsg}" method="POST">
-
-                <img src="./img/hlogo3.png">
+            <form th:object="${msgObj}" class="form-group" style="margin: 0 auto;" id="msg-form" name="form" th:action="@{../saveMsg}" method="POST">
+            <input type="hidden" th:field="*{mid}" readonly>
+                <img src="../img/hlogo3.png">
                 <br />
                 <br />
                 <br />
@@ -63,42 +63,6 @@
                 </div>
 
             </form>
-            <div class="row second-row-element" th:object="${currentUser}">
-                <div class="col col-lg">
-
-                </div>
-                <div class="col col-lg">
-                    <h2>All Messages</h2>
-                </div>
-                <div class="col col-lg">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col col-lg">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">Owner</th>
-                                <th scope="col">Message</th>
-                                <th scope="col">Encrypted message</th>
-                                <th scope="col">Encoding</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="table-element" th:each="element : ${pubList}">
-                                <td th:text="${element.user.firstname}"></td>
-                                <td th:text="${element.message}"></td>
-                                <td th:text="${element.encryptedMsg}"></td>
-                                <td th:text="${element.encode}"></td>
-                                <td><a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger" th:href="@{/delete2/{id}(id=${element.mid})}">Remove</a></td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
             <div class="row">
                 <div class="col col-lg">
 
@@ -117,6 +81,24 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <script>
+    /* EDIT PAGE CHECKS */
+    /* TO MAKE SURE THAT USER PRESSES 'ENCRYPT BUTTON' BEFORE SAVING */
+       var count = 0;
+       $('#encrypt-button').on('click', function() {
+           count++;
+           console.log(count);
+       });        
+       $('form').submit(function(e) {
+          if(count < 1) {
+            alert('Trying your luck eh?:) Press encrypt button before saving.');
+              e.preventDefault();
+          } 
+       });        
+        
+        
+        
     </script>
     <script>
         $(".shift-group").hide();

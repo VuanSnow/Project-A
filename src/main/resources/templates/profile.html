@@ -52,6 +52,7 @@
                         <th scope="col">Encrypted message</th>
                         <th scope="col">Encoding</th>
                         <th scope="col">Message is public</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,8 @@
                         <td th:text="${element.encryptedMsg}"></td>
                         <td th:text="${element.encode}"></td>
                         <td th:text="${element.visibility}"></td>
+                        <td><a class="btn btn-info" th:href="@{/edit/{id}(id=${element.mid})}">Edit</a>
+                        <a class="btn btn-danger" th:href="@{/delete/{id}(id=${element.mid})}">Delete</a></td>
                     </tr>
 
                     </tbody>

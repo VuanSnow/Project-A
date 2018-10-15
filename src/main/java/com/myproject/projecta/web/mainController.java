@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -49,7 +51,7 @@ public class mainController implements ErrorController {
     //REDIRECT FROM '/' TO LOGIN
     @RequestMapping("/")
     public String returnLogin() {
-        return "redirect:index";
+        return "redirect:profile";
     }
     //LOG-IN PAGE
     @RequestMapping(value = "/login")
@@ -106,7 +108,7 @@ public class mainController implements ErrorController {
 
     @RequestMapping(value = "/index")
     public String index() {
-        return "index";
+        return "redirect:/profile";
     }
 
     /********************************/
@@ -141,7 +143,7 @@ public class mainController implements ErrorController {
 
 
     /********************************/
-    /*          PROFILE SECTION      */
+    /*          MSG SECTION         */
     /********************************/
 
     @RequestMapping(value = "/saveMsg", method = RequestMethod.POST)
@@ -151,9 +153,25 @@ public class mainController implements ErrorController {
         System.out.println(currentUser);
         message.setUser(ur.findByUsername(currentUser));
         mr.save(message);
-        return "redirect:profile";
-
-
+        return "redirect:/profile";
+    }
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editMsg(@PathVariable("id") long id, Model model) {
+        Optional<Message> msg = mr.findById(id);
+        model.addAttribute("msgObj", msg);
+        return "edit";
+    }
+    //DELETE MESSAGES IN PROFILE PAGE
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    public String deleteMsg(@PathVariable("id") long id) {
+        mr.deleteById(id);
+        return "redirect:/profile";
+    }
+    //ADMIN DELETE IN MESSAGES PAGE
+    @RequestMapping(value = "/delete2/{id}", method = RequestMethod.GET)
+    public String deleteMsg2(@PathVariable("id") long id) {
+        mr.deleteById(id);
+        return "redirect:/messages";
     }
 
 
