@@ -3,7 +3,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     /*font-family: 'Pontano Sans', sans-serif;*/
     font-family: 'Montserrat', sans-serif;
     background-color: rgb(192, 163, 157);
