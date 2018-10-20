@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viweport" content="width=device-width, initial-scale=1">
@@ -11,26 +10,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link rel="shortcut icon" th:href="@{/img/favicon.ico}" href="./img/favicon.ico">
 </head>
-
 <body>
     <div class="container">
         <form class="form-group login-form" th:action="@{/logout}" method="POST">
             <div class="text-center mb-4">
                 <img src="./img/hlogo4.png">
                 <h1 class="h3 mb-3 font-weight-bold">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-				<p>What would you like to do?</p>
-				<a class="btn btn-large btn-info" style="color: white;" th:href="@{/messages}">Encrypt messages</a>
-				<a class="btn btn-large btn-info" style="color: white;" th:href="@{/profile}">Modify my profile</a>
-
-
+		<p>What would you like to do?</p>
+		<a class="btn btn-large btn-info" style="color: white;" th:href="@{/messages}">Encrypt messages</a>
+		<a class="btn btn-large btn-info" style="color: white;" th:href="@{/profile}">Modify my profile</a>
             </div>
-      
-			<div class="text-center mb-4">
-			  <input type="submit" class="btn btn-danger" style="margin-left: 20px;margin-right: 10px;"value="Logout">
-		</div>
+	    <div class="text-center mb-4">
+		<input type="submit" class="btn btn-danger" style="margin-left: 20px;margin-right: 10px;"value="Logout">
+	    </div>
         </form>
-	
     </div>
 </body>
-
 </html>
