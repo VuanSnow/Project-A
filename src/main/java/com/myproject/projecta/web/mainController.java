@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -161,19 +163,12 @@ public class mainController implements ErrorController {
         model.addAttribute("msgObj", msg);
         return "edit";
     }
-    //DELETE MESSAGES IN PROFILE PAGE
+    //DELETE MESSAGES IN PROFILE PAGE/MESSAGES PAGE
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-    public String deleteMsg(@PathVariable("id") long id) {
+    public String deleteMsg(@PathVariable("id") long id, HttpServletRequest request) {
+        //get the referer url to know where to redirect after deleting a message
+        final String referer = request.getHeader("referer");
         mr.deleteById(id);
-        return "redirect:/profile";
+        return (referer.contains("profile") ? "redirect:/profile" : "redirect:/messages");
     }
-    //ADMIN DELETE IN MESSAGES PAGE
-    @RequestMapping(value = "/delete2/{id}", method = RequestMethod.GET)
-    public String deleteMsg2(@PathVariable("id") long id) {
-        mr.deleteById(id);
-        return "redirect:/messages";
-    }
-
-
-
 }

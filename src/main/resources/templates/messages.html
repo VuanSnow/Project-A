@@ -110,7 +110,7 @@
                                 <td th:text="${element.message}"></td>
                                 <td th:text="${element.encryptedMsg}"></td>
                                 <td th:text="${element.encode}"></td>
-                                <td><a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger" th:href="@{/delete2/{id}(id=${element.mid})}">Remove</a></td>
+                                <td><a sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger" th:href="@{/delete/{id}(id=${element.mid})}">Remove</a></td>
                             </tr>
 
                         </tbody>
