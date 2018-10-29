@@ -22,6 +22,7 @@ public class ProjectAApplication {
 	@Bean
 	public CommandLineRunner demo(UserRepository ur, MessageRepository mr) {
 		return (args) -> {
+			/*
 			User user = new User("user", "Mike the user","$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER","mike@user.com");
 			ur.save(user);
 			user = new User("admin", "Minnie the admin","$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN","minnie@admin.com");
@@ -37,7 +38,8 @@ public class ProjectAApplication {
 				add(new Message("Bunny", "Morse Code", "-... ..- -. -. -.-- ", true, ur.findByUsername("admin")));
 			}};
 			testMessages.forEach(p -> mr.save(p));
-
+			*/
 		};
+
 	}
 }

@@ -20,14 +20,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 @Controller
-@FieldDefaults(level = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class mainController implements ErrorController {
 
     UserRepository ur;
@@ -50,7 +47,7 @@ public class mainController implements ErrorController {
         return PATH;
     }
 
-    //REDIRECT FROM '/' TO LOGIN
+    //REDIRECT FROM '/' TO PROFILE PAGE
     @RequestMapping("/")
     public String returnLogin() {
         return "redirect:profile";
@@ -80,6 +77,7 @@ public class mainController implements ErrorController {
         if(!bindingResult.hasErrors()) {
             Iterable<User> users = ur.findAll();
             boolean exists = false;
+
             for (User user : users) {
                 if (user.getUsername().equalsIgnoreCase(signupForm.getUsername())) {
                     exists = true;
@@ -107,7 +105,7 @@ public class mainController implements ErrorController {
     /********************************/
     /*          INDEX SECTION        */
     /********************************/
-
+    // :(
     @RequestMapping(value = "/index")
     public String index() {
         return "redirect:/profile";
@@ -134,7 +132,7 @@ public class mainController implements ErrorController {
         model.addAttribute("msgObj", message);
         return "messages";
     }
-    private List<Message> publicList() {
+    List<Message> publicList() {
         Iterable<Message> it = mr.findAll();
         List<Message> publicList = new ArrayList<>();
         it.forEach(p -> {

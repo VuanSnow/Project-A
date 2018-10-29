@@ -122,6 +122,13 @@
                alert('Press encrypt button! :-) before saving.');
                e.preventDefault();
            } else {
+               var encodeIndex = $("option:selected").index("option");
+               var selectedOptionValue = $('option:selected');
+               var shiftValue = $('.shift-value').val();
+               if(encodeIndex === 1) {
+                   selectedOptionValue.prop('value',selectedOptionValue.prop('innerHTML') + ', shift: ' + shiftValue);
+               }
+
                return;
            }
         });

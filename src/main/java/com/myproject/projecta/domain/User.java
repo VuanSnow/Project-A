@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Data
-@FieldDefaults(level = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     //USER ID
     @Id

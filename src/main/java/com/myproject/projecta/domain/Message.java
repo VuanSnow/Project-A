@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@FieldDefaults(level = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Message {
     //message ID
     @Id
@@ -26,7 +26,7 @@ public class Message {
     @Column(name = "encryptedMsg", nullable = false)
     String encryptedMsg;
     //visibility for other users
-    @Column(name = "visibility", nullable = true)
+    @Column(name = "visibility", nullable = false)
     Boolean visibility;
     @ManyToOne
     @JsonIgnore
@@ -36,6 +36,7 @@ public class Message {
     public Message() {
 
     }
+
     public Message(String message, String encode, String encryptedMsg, Boolean visibility, User user) {
         this.message = message;
         this.encode = encode;
