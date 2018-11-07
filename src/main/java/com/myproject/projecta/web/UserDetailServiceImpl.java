@@ -12,9 +12,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@FieldDefaults(level = AccessLevel.PROTECTED)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserDetailServiceImpl implements UserDetailsService {
-    private final UserRepository repo;
+    
+    final UserRepository repo;
+    
     @Autowired
     public UserDetailServiceImpl(UserRepository repo) {
         this.repo = repo;
